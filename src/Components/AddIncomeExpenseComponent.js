@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { formData } from '../formData/FormData';
 import {
-	Text,
-	TouchableOpacity,
-	View,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import COLOR from '../Color';
 import styles from '../styles';
@@ -12,17 +12,17 @@ import { ModalHeading } from './UtilityComponents';
 import { TextInputComponent, DateInputComponent } from './InputComponents';
 import { setTransaction } from '../utility/utility';
 
-const SwitchButtonComponent = ({title, style, switchState}) => {
+const SwitchButtonComponent = ({ title, style, switchState }) => {
   return (
-    <View style={[styles.switchButtonContent, style, switchState ? {backgroundColor: COLOR.YELLOW}: {backgroundColor: COLOR.GREY}]}>
-      <Text style={[styles.fontOne, switchState ? {color: COLOR.WHITE}: {color: COLOR.BLACK}]}>{title}</Text>
+    <View style={[styles.switchButtonContent, style, switchState ? { backgroundColor: COLOR.YELLOW } : { backgroundColor: COLOR.GREY }]}>
+      <Text style={[styles.fontOne, switchState ? { color: COLOR.WHITE } : { color: COLOR.BLACK }]}>{title}</Text>
     </View>
   )
 }
 
 
-export default AddIncomeExpenseComponent = ({handleChange, transaction}) => {
-  const [switchState, SetSwitchState] = useState(transaction != '' ? transaction['type'] == 'Income' ? true: false : true);
+export default AddIncomeExpenseComponent = ({ handleChange, transaction }) => {
+  const [switchState, SetSwitchState] = useState(transaction != '' ? transaction['type'] == 'Income' ? true : false : true);
   const [saveState, SetSaveState] = useState(false);
   const [formValues, handleFormValueChange, setFormValues] = formData({
     amount: '',
@@ -31,7 +31,7 @@ export default AddIncomeExpenseComponent = ({handleChange, transaction}) => {
   })
 
   return (
-    <View style={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+    <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
       <View style={styles.modalView}>
         <ModalHeading title={'Add Income/Expense'} handleChange={handleChange} />
 
@@ -49,49 +49,49 @@ export default AddIncomeExpenseComponent = ({handleChange, transaction}) => {
             </TouchableOpacity>
           </View>
 
-          <TextInputComponent 
+          <TextInputComponent
             formKey='amount'
             handleFormValueChange={handleFormValueChange}
             textInputProps={{
               keyboardType: 'numeric',
-              placeholder: transaction != '' ? transaction['amount']: 'Amount'
+              placeholder: transaction != '' ? transaction['amount'] : 'Amount'
             }}
           />
-          {formValues['amount'] == '' && saveState && 
+          {formValues['amount'] == '' && saveState &&
             <View style={styles.errorMessage}>
-              <Text style={{color: COLOR.RED}}>Amount is null.</Text>
+              <Text style={{ color: COLOR.RED }}>Amount is null.</Text>
             </View>
           }
 
-          <TextInputComponent 
+          <TextInputComponent
             formKey='description'
             handleFormValueChange={handleFormValueChange}
             textInputProps={{
-              placeholder: transaction != '' ? transaction['description']:  'Description'
+              placeholder: transaction != '' ? transaction['description'] : 'Description'
             }}
           />
-          {formValues['description'] == '' && saveState && 
+          {formValues['description'] == '' && saveState &&
             <View style={styles.errorMessage}>
-              <Text style={{color: COLOR.RED}}>Description is null.</Text>
+              <Text style={{ color: COLOR.RED }}>Description is null.</Text>
             </View>
           }
 
-          <DateInputComponent 
+          <DateInputComponent
             formKey='date'
             handleFormValueChange={handleFormValueChange}
             textInputProps={{
               placeholder: transaction != '' ? new Date(transaction['date']).toString().substring(0, 15) : 'Date'
             }}
           />
-          {formValues['date'] == '' && saveState && 
+          {formValues['date'] == '' && saveState &&
             <View style={styles.errorMessage}>
-              <Text style={{color: COLOR.RED}}>Date is null.</Text>
+              <Text style={{ color: COLOR.RED }}>Date is null.</Text>
             </View>
           }
 
           <TouchableOpacity
-            onPress={async() => {
-              const type = switchState ? "Income": "Expense"
+            onPress={async () => {
+              const type = switchState ? "Income" : "Expense"
               formValues['type'] = type
               if (formValues['amount'] == '' || formValues['description'] == '' || formValues['date'] == '') {
                 SetSaveState(true)
@@ -101,8 +101,8 @@ export default AddIncomeExpenseComponent = ({handleChange, transaction}) => {
               handleChange()
             }}
           >
-            <View style={[styles.alignSelfStyle, {marginTop: 16}]}>
-              <Text style={[styles.fontTwo, {color: COLOR.YELLOW}]}>Save</Text>
+            <View style={[styles.alignSelfStyle, { marginTop: 16 }]}>
+              <Text style={[styles.fontTwo, { color: COLOR.YELLOW }]}>Save</Text>
             </View>
           </TouchableOpacity>
         </View>

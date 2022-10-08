@@ -1,7 +1,7 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
-	TextInput,
+  TextInput,
 } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -12,8 +12,8 @@ export const TextInputComponent = (props) => {
   const [onFocus, SetOnFocus] = useState(false);
 
   return (
-    <TextInput 
-      style={[styles.textInput, onFocus && {borderColor: COLOR.YELLOW}]}
+    <TextInput
+      style={[styles.textInput, onFocus && { borderColor: COLOR.YELLOW }]}
       onFocus={() => SetOnFocus(true)}
       onBlur={() => SetOnFocus(false)}
       onChange={(event) => props.handleFormValueChange(props.formKey, event.nativeEvent.text)}
@@ -28,7 +28,7 @@ export const DateInputComponent = (props) => {
   const focus = useRef(false);
   return (
     <View>
-      <TextInput 
+      <TextInput
         ref={focus}
         style={styles.textInput}
         value={dateValue}

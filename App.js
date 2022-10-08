@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import HomeScreen from './src/Home';
@@ -9,9 +9,9 @@ import ProfileScreen from './src/Profile';
 
 const Stack = createStackNavigator();
 const App = () => {
-	return (
-		<NavigationContainer>
-			<Stack.Navigator
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
         screenOptions={{
           title: 'TrackIt',
           headerTitleAlign: 'center',
@@ -21,9 +21,9 @@ const App = () => {
           headerTintColor: '#FFFFFF',
         }}
       >
-				<Stack.Screen
-					name="Home"
-					component={HomeScreen}
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
           options={({ navigation }) => ({
             headerRight: () => (
               <Icon
@@ -37,14 +37,14 @@ const App = () => {
               marginRight: 8
             }
           })}
-				/>
-				<Stack.Screen
-					name="Profile"
-					component={ProfileScreen}
-				/>
-			</Stack.Navigator>
-		</NavigationContainer>
-	);
+        />
+        <Stack.Screen
+          name="Profile"
+          component={ProfileScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default App;
